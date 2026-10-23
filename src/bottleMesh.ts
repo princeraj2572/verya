@@ -85,19 +85,20 @@ export function createBottle(quality: GlassQuality, segments = 96): Bottle {
       color: 0xd9822b,
       emissive: 0xd9822b,
       emissiveIntensity: 0.15,
-      roughness: 0.2,
-      clearcoat: 0.6,
+      roughness: 0.35,
+      clearcoat: 0.25,
+      envMapIntensity: 0.35,
       side: THREE.DoubleSide,
     }),
   );
   const gold = track(
     new THREE.MeshPhysicalMaterial({
-      color: 0xc9a45c,
+      color: 0xb8903f,
       metalness: 1,
-      roughness: 0.34,
+      roughness: 0.42,
       anisotropy: 0.8,
       anisotropyRotation: Math.PI / 2,
-      envMapIntensity: 1.4,
+      envMapIntensity: 0.9,
     }),
   );
   const lacquer = track(
@@ -166,9 +167,10 @@ export function createBottle(quality: GlassQuality, segments = 96): Bottle {
     },
     setLiquid(colour, warmth, glow) {
       tint.setHex(mixHex(colour, WARM_TINT, warmth * 0.4));
-      liquidMat.color.copy(tint);
       liquidMat.emissive.copy(tint);
-      liquidMat.emissiveIntensity = 0.12 + glow * 0.9;
+      // keep the diffuse colour deep so reflections do not wash the liquid out
+      liquidMat.color.copy(tint).multiplyScalar(0.5);
+      liquidMat.emissiveIntensity = 0.04 + glow * 0.6;
     },
     setGlassQuality(next) {
       glass.material = next === 'full' ? glassFull : glassSimple;
