@@ -6,7 +6,7 @@ describe('mapProgress', () => {
   it('starts at the hero: facing front, far camera, charcoal', () => {
     const s = mapProgress(0);
     expect(s.rotationY).toBe(0);
-    expect(s.cameraZ).toBe(9);
+    expect(s.cameraZ).toBe(12);
     expect(s.background).toBe(palette.charcoal);
     expect(s.explode).toBe(0);
     expect(s.idle).toBe(1);
