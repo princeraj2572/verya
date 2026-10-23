@@ -22,6 +22,7 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 1920, height: 1200 } });
 
+page.setDefaultTimeout(180_000);
 let hero: Buffer | undefined;
 for (const [i] of chapters.entries()) {
   await page.goto(`${url}/?still=${i}&quality=high`);
