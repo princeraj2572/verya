@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { palette } from './content';
-import { chapterAt, chapterProgress, mapProgress, mixHex } from './scrollMap';
+import { chapterAt, chapterProgress, luma, mapProgress, mixHex } from './scrollMap';
 
 describe('mapProgress', () => {
   it('starts at the hero: facing front, far camera, charcoal', () => {
@@ -54,6 +54,19 @@ describe('mapProgress', () => {
   it('blends colours halfway between two chapters', () => {
     const mid = mapProgress((chapterProgress(6) + chapterProgress(7)) / 2).background;
     expect(mid).toBe(mixHex(0x1c0f1b, palette.cream, 0.5));
+  });
+});
+
+describe('ink', () => {
+  it('stays light on dark backgrounds and dark on cream, with only a brief mid-grey handover', () => {
+    let weak = 0;
+    let total = 0;
+    for (let p = 0; p <= 1.0001; p += 0.002) {
+      const s = mapProgress(p);
+      total++;
+      if (Math.abs(luma(s.background) - luma(s.ink)) < 0.3) weak++;
+    }
+    expect(weak / total).toBeLessThan(0.02);
   });
 });
 

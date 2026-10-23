@@ -155,6 +155,17 @@ export function mixHex(a: number, b: number, t: number): number {
 
 const colourKeys = new Set<keyof Key>(['background', 'ink', 'keyLight']);
 
+/** Perceived brightness of a hex colour, 0 to 1 (sRGB, no gamma conversion). */
+export function luma(hex: number): number {
+  return (0.2126 * ((hex >> 16) & 255) + 0.7152 * ((hex >> 8) & 255) + 0.0722 * (hex & 255)) / 255;
+}
+
+/** Ink follows the background brightness so text never crosses it at mid-grey. */
+function inkFor(background: number): number {
+  const t = smooth(clamp01((luma(background) - 0.44) / 0.06));
+  return mixHex(palette.ink, palette.inkDark, t);
+}
+
 export function chapterProgress(index: number): number {
   return index / (CHAPTER_COUNT - 1);
 }
@@ -173,5 +184,6 @@ export function mapProgress(progress: number): SceneState {
   for (const k of Object.keys(from) as (keyof Key)[]) {
     out[k] = colourKeys.has(k) ? mixHex(from[k], to[k], t) : lerp(from[k], to[k], t);
   }
-  return { ...(out as Key), chapter: chapterAt(progress) };
+  const state = out as Key;
+  return { ...state, ink: inkFor(state.background), chapter: chapterAt(progress) };
 }
