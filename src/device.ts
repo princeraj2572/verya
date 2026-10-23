@@ -8,6 +8,8 @@ export interface DeviceProfile {
   glass: GlassQuality;
   /** lathe radial segments */
   segments: number;
+  /** drop to cheaper settings if frames are slow; off with ?quality=high */
+  adaptive: boolean;
 }
 
 export function hasWebGL(): boolean {
@@ -23,7 +25,7 @@ export function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export function detectProfile(): DeviceProfile {
+export function detectProfile(forceHigh = false): DeviceProfile {
   const mobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
   const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8;
   const slow = (navigator.hardwareConcurrency ?? 8) <= 4 || memory <= 4;
@@ -34,5 +36,6 @@ export function detectProfile(): DeviceProfile {
     density: mobile ? 0.35 : 1,
     glass: mobile && slow ? 'simple' : 'full',
     segments: mobile ? 48 : 96,
+    adaptive: !forceHigh,
   };
 }
