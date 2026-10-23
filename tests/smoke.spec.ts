@@ -12,7 +12,7 @@ test('scrolls through every chapter with no console errors', async ({ page }) =>
   });
   page.on('pageerror', (e) => problems.push(e.message));
 
-  await page.goto('/');
+  await page.goto('/?quality=high');
   await page.waitForSelector('html[data-ready="1"]', { state: 'attached' });
   await expect(page.locator('html.static')).toHaveCount(0);
   await expect(page.locator('canvas#stage')).toBeVisible();
