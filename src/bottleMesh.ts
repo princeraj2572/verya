@@ -55,16 +55,16 @@ export function createBottle(quality: GlassQuality, segments = 96): Bottle {
     new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
       transmission: 1,
-      thickness: 1.6,
+      thickness: 0.9,
       ior: 1.5,
-      roughness: 0.05,
+      roughness: 0.02,
       metalness: 0,
       clearcoat: 1,
       clearcoatRoughness: 0.03,
-      attenuationColor: new THREE.Color(0xffe6c4),
-      attenuationDistance: 7,
+      attenuationColor: new THREE.Color(0xffd9a0),
+      attenuationDistance: 12,
       specularIntensity: 1,
-      envMapIntensity: 1.3,
+      envMapIntensity: 1.6,
     }),
   );
   // Cheaper stand-in for slow devices: no transmission pass, just a reflective tinted shell.
@@ -131,13 +131,14 @@ export function createBottle(quality: GlassQuality, segments = 96): Bottle {
   ring.position.y = dims.neckY;
   const neckPart = new THREE.Group().add(ring);
 
-  const capBody = new THREE.Mesh(track(lathe(capProfile, segments)), lacquer);
-  const collar = new THREE.Mesh(
-    track(new THREE.CylinderGeometry(0.68, 0.68, 0.16, segments, 1, true)),
-    gold,
+  const capBody = new THREE.Mesh(track(lathe(capProfile, segments)), gold);
+  // a thin dark seam where cap meets neck, so the gold reads as a separate part
+  const seam = new THREE.Mesh(
+    track(new THREE.CylinderGeometry(0.535, 0.535, 0.07, segments, 1, true)),
+    lacquer,
   );
-  collar.position.y = 0.08;
-  const capPart = new THREE.Group().add(capBody, collar);
+  seam.position.y = 0.035;
+  const capPart = new THREE.Group().add(capBody, seam);
 
   group.add(basePart, glassPart, liquidPart, neckPart, capPart);
 
