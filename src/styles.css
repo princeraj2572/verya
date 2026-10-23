@@ -629,14 +629,17 @@ html[data-chapter='7'] .site-footer {
   }
   .chapter--hero .chapter__inner {
     grid-template-columns: 1fr;
-    grid-template-areas: 'label' 'title' 'body' 'cue';
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 'label' 'title' 'body';
     padding: 4.5rem 2rem 0 0;
   }
   .chapter--hero .title {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    height: 100%;
+    align-self: stretch;
+    height: auto;
+    margin-bottom: var(--s-3);
   }
   .chapter--hero .cue {
     display: none;
@@ -644,6 +647,13 @@ html[data-chapter='7'] .site-footer {
   .chapter--craft {
     align-items: flex-start;
     padding-top: 12vh;
+  }
+  .part-label {
+    font-size: 0.85rem;
+    gap: 0.3rem;
+  }
+  .part-label::before {
+    width: 1rem;
   }
   .title {
     margin: var(--s-1) 0 var(--s-2);
