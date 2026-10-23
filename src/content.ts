@@ -65,7 +65,8 @@ export const chapters: Chapter[] = [
     kicker: 'Eau de parfum · 50 ml',
     headline: ['Ember', '& Fig'],
     body: 'A fragrance for the hour after sunset, when the day is still warm in the walls.',
-    stillAlt: 'A faceted glass perfume bottle with amber liquid, lit from the side on a dark ground.',
+    stillAlt:
+      'A faceted glass perfume bottle with amber liquid, lit from the side on a dark ground.',
   },
   {
     id: 'glass',
@@ -73,7 +74,8 @@ export const chapters: Chapter[] = [
     kicker: 'Chapter I · The Glass',
     headline: ['Finished', 'by hand.'],
     body: 'Each flask is blown, cooled slowly and polished until the light travels through it without hurry. No two edges catch the light in quite the same way.',
-    stillAlt: 'Close view of the bottle shoulder, a soft band of light sweeping across thick glass.',
+    stillAlt:
+      'Close view of the bottle shoulder, a soft band of light sweeping across thick glass.',
   },
   {
     id: 'top',
@@ -118,7 +120,8 @@ export const chapters: Chapter[] = [
     kicker: 'Chapter V · Craft',
     headline: ['Built from', 'five quiet parts.'],
     body: 'Take it apart and the design is plain: one cap, one neck, one block of glass, one measure of liquid, one weighted base.',
-    stillAlt: 'The bottle in an exploded view, cap lifted above the neck and the parts floating apart.',
+    stillAlt:
+      'The bottle in an exploded view, cap lifted above the neck and the parts floating apart.',
   },
   {
     id: 'editions',
