@@ -498,7 +498,7 @@ main {
 
 .site-footer {
   position: fixed;
-  left: var(--gutter);
+  right: calc(var(--gutter) + 3rem);
   bottom: var(--s-2);
   z-index: 3;
   max-width: 34rem;
@@ -687,6 +687,7 @@ html[data-chapter='7'] .site-footer {
     font-size: 1.25rem;
   }
   .site-footer {
+    left: var(--gutter);
     right: var(--gutter);
     bottom: 0.6rem;
   }
