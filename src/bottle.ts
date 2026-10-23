@@ -26,8 +26,9 @@ export const liquidProfile: Profile = [
   [1.18, 0.65],
   [1.17, 1.2],
   [1.1, 1.7],
-  [0.9, 2.02],
-  [0, 2.1],
+  [0.86, 2.2],
+  [0.5, 2.3],
+  [0, 2.34],
 ];
 
 /** Weighted foot, a separate part so it can drop away in the exploded view. */
