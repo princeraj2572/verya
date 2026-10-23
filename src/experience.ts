@@ -54,7 +54,7 @@ export function startExperience({ profile, store, nav, still }: ExperienceOption
         const p = pos[id];
         const left = LEFT.includes(id);
         el.dataset.side = left ? 'left' : 'right';
-        el.style.transform = `translate3d(${p.x + (left ? -1 : 1) * (p.r * PART_RADIUS[id] + 28)}px, ${p.y}px, 0)`;
+        el.style.transform = `translate3d(${p.x + (left ? -1 : 1) * (p.r * PART_RADIUS[id] + (profile.mobile ? 8 : 28))}px, ${p.y}px, 0)`;
         el.style.opacity = String(Math.max(0, (state.explode - 0.5) * 2));
       }
     } else {
