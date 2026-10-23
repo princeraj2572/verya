@@ -57,6 +57,16 @@ describe('mapProgress', () => {
   });
 });
 
+describe('shiftX', () => {
+  it('moves the bottle away from the text column, and centres it for hero and craft', () => {
+    expect(mapProgress(chapterProgress(0)).shiftX).toBe(0);
+    expect(mapProgress(chapterProgress(1)).shiftX).toBeGreaterThan(0);
+    expect(mapProgress(chapterProgress(2)).shiftX).toBeLessThan(0);
+    expect(mapProgress(chapterProgress(5)).shiftX).toBe(0);
+    expect(mapProgress(chapterProgress(7)).shiftX).toBeLessThan(0);
+  });
+});
+
 describe('ink', () => {
   it('stays light on dark backgrounds and dark on cream, with only a brief mid-grey handover', () => {
     let weak = 0;

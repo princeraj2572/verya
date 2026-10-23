@@ -10,6 +10,8 @@ export interface SceneState {
   cameraZ: number;
   cameraY: number;
   lookY: number;
+  /** horizontal offset of the bottle as a fraction of half the screen width (clear of the text) */
+  shiftX: number;
   background: number;
   ink: number;
   keyLight: number;
@@ -42,6 +44,7 @@ const base: Key = {
   cameraZ: 12,
   cameraY: 1.7,
   lookY: 1.65,
+  shiftX: 0,
   background: palette.charcoal,
   ink: palette.ink,
   keyLight: 0xffe2b0,
@@ -63,7 +66,8 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: 1.2,
-    cameraZ: 6.8,
+    shiftX: 0.5,
+    cameraZ: 7.4,
     cameraY: 2.3,
     lookY: 2.2,
     sweep: 0.5,
@@ -73,6 +77,7 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: 2.4,
+    shiftX: -0.5,
     tiltZ: 0.2,
     tiltX: 0.06,
     cameraZ: 10,
@@ -86,6 +91,7 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: 3.5,
+    shiftX: 0.5,
     tiltZ: -0.1,
     cameraZ: 10,
     background: palette.plum,
@@ -98,6 +104,7 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: 4.4,
+    shiftX: -0.5,
     cameraZ: 10.5,
     background: palette.deepAmber,
     keyLight: 0xff9a3c,
@@ -122,6 +129,7 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: 5.9,
+    shiftX: 0.5,
     cameraZ: 10.5,
     background: 0x1c0f1b,
     keyLight: 0xffd9b0,
@@ -132,6 +140,7 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: Math.PI * 2,
+    shiftX: -0.5,
     cameraZ: 9.5,
     background: palette.cream,
     ink: palette.inkDark,
