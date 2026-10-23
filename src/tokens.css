@@ -1,0 +1,54 @@
+/* Design tokens: every colour, size, space, easing and duration used on the page. */
+:root {
+  /* chapter backgrounds (also mirrored in content.ts for the 3D scene) */
+  --bg-charcoal: #15120f;
+  --bg-amber: #2a1708;
+  --bg-plum: #24101f;
+  --bg-cream: #eadfcb;
+  --bg: var(--bg-charcoal);
+
+  --ink: #f1e7d6;
+  --ink-soft: #cdbfa8;
+  --ink-dark: #1b1510;
+  --hairline: rgb(241 231 214 / 0.22);
+
+  /* brushed gold accent; --accent is overridden live by the edition picker */
+  --gold: #c9a45c;
+  --gold-bright: #e6c887;
+  --accent: var(--gold);
+
+  /* type */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fs-label: 0.75rem;
+  --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
+  --fs-lead: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --fs-h2: clamp(2.75rem, 1.5rem + 5.5vw, 7rem);
+  --fs-h1: clamp(3.75rem, 1rem + 13vw, 13rem);
+  --tracking-label: 0.22em;
+
+  /* spacing */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2.5rem;
+  --s-5: 4rem;
+  --s-6: 7rem;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+
+  /* motion: slow, ease-out, nothing bounces */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 600ms;
+  --dur-mid: 900ms;
+  --dur-slow: 1200ms;
+
+  --chapter-h: 100svh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 200ms;
+    --dur-mid: 300ms;
+    --dur-slow: 400ms;
+  }
+}
