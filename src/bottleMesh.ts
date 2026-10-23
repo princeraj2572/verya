@@ -93,12 +93,12 @@ export function createBottle(quality: GlassQuality, segments = 96): Bottle {
   );
   const gold = track(
     new THREE.MeshPhysicalMaterial({
-      color: 0xb8903f,
+      color: 0xa88437,
       metalness: 1,
       roughness: 0.42,
       anisotropy: 0.8,
       anisotropyRotation: Math.PI / 2,
-      envMapIntensity: 0.9,
+      envMapIntensity: 0.6,
     }),
   );
   const lacquer = track(
