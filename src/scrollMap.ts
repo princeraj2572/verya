@@ -150,7 +150,7 @@ const keys: Key[] = [
     ...base,
     rotationY: Math.PI * 2,
     shiftX: -0.5,
-    shiftY: 0.42,
+    shiftY: 0.6,
     cameraZ: 9.5,
     background: palette.cream,
     ink: palette.inkDark,
