@@ -57,7 +57,12 @@ async function enterExperience(): Promise<void> {
   observeReveals(app);
   const { startExperience } = await import('./experience');
   try {
-    const stop = startExperience({ profile: detectProfile(), store, nav, still });
+    const stop = startExperience({
+      profile: detectProfile(params.get('quality') === 'high'),
+      store,
+      nav,
+      still,
+    });
     window.addEventListener('pagehide', stop);
     root.dataset.ready = '1';
   } catch (error) {
