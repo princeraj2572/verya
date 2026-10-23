@@ -93,7 +93,8 @@ export function createScene(canvas: HTMLCanvasElement, profile: DeviceProfile): 
 
   const pose = (): void => {
     // pull the camera back on tall screens so the bottle always fits
-    const fit = aspect < 1 ? 1 + (1 - aspect) * 0.85 : 1;
+    // chapters that share the screen with text get a little more room on tall screens
+    const fit = aspect < 1 ? (1 + (1 - aspect) * 0.85) * (1 + Math.abs(state.shiftY) * 0.7) : 1;
     const dist = state.cameraZ * fit;
     // on tall screens the bottle rides in the upper half, clear of the text below it
     const lift = aspect <= 1 ? state.shiftY * Math.tan((camera.fov * Math.PI) / 360) * dist : 0;
