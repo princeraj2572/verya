@@ -15,7 +15,7 @@ export interface SceneState {
   keyLight: number;
   keyIntensity: number;
   rimIntensity: number;
-  /** position of the travelling highlight, 0 (left) to 1 (right); -1 when off */
+  /** travelling highlight: 0 left, 1 right; its light fades in and out as sin(pi * sweep) */
   sweep: number;
   /** 0 to 1: how far the liquid warms toward amber */
   warmth: number;
@@ -47,7 +47,7 @@ const base: Key = {
   keyLight: 0xffe2b0,
   keyIntensity: 1,
   rimIntensity: 1.2,
-  sweep: -1,
+  sweep: 1,
   warmth: 0.1,
   glow: 0.15,
   explode: 0,
@@ -59,14 +59,14 @@ const base: Key = {
 };
 
 const keys: Key[] = [
-  { ...base, idle: 1 },
+  { ...base, idle: 1, sweep: 0 },
   {
     ...base,
     rotationY: 1.2,
     cameraZ: 5.8,
     cameraY: 2.3,
     lookY: 2.2,
-    sweep: 1,
+    sweep: 0.5,
     keyIntensity: 1.2,
     sparkles: 0.5,
   },

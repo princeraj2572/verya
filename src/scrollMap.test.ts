@@ -16,7 +16,7 @@ describe('mapProgress', () => {
     const hero = mapProgress(chapterProgress(0));
     const glass = mapProgress(chapterProgress(1));
     expect(glass.cameraZ).toBeLessThan(hero.cameraZ - 2);
-    expect(glass.sweep).toBe(1);
+    expect(glass.sweep).toBe(0.5);
   });
 
   it('tilts at top notes and moves the background to plum by the heart', () => {
