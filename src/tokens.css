@@ -8,9 +8,7 @@
   --bg: var(--bg-charcoal);
 
   --ink: #f1e7d6;
-  --ink-soft: #cdbfa8;
   --ink-dark: #1b1510;
-  --hairline: rgb(241 231 214 / 0.22);
 
   /* brushed gold accent; --accent is overridden live by the edition picker */
   --gold: #c9a45c;
@@ -24,7 +22,7 @@
   --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
   --fs-lead: clamp(1.25rem, 1rem + 1vw, 1.75rem);
   --fs-h2: clamp(2.75rem, 1.5rem + 5.5vw, 7rem);
-  --fs-h1: clamp(3.75rem, 1rem + 13vw, 13rem);
+  --fs-h1: clamp(3.75rem, 1rem + 10.5vw, 11rem);
   --tracking-label: 0.22em;
 
   /* spacing */
@@ -43,6 +41,13 @@
   --dur-slow: 1200ms;
 
   --chapter-h: 100svh;
+}
+
+/* derived from the live --ink, so they stay readable as the background shifts */
+:root,
+.chapter {
+  --ink-soft: color-mix(in srgb, var(--ink) 74%, transparent);
+  --hairline: color-mix(in srgb, var(--ink) 24%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
