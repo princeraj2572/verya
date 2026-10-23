@@ -35,8 +35,8 @@ function buildEnvironment(): THREE.Scene {
     mesh.lookAt(0, 1.6, 0);
     env.add(mesh);
   };
-  panel(4, 7, 6, -5, 4, 3); // broad soft-box, camera left
-  panel(1.2, 8, 14, 6, 3, -3); // thin strip behind right for a crisp rim reflection
+  panel(4, 7, 4, -5, 4, 3); // broad soft-box, camera left
+  panel(1.2, 8, 6, 6, 3, -3); // thin strip behind right for a crisp rim reflection
   return env;
 }
 
@@ -97,6 +97,9 @@ export function createScene(canvas: HTMLCanvasElement, profile: DeviceProfile): 
     camera.position.set(0, state.cameraY, state.cameraZ * fit);
     camera.lookAt(0, state.lookY, 0);
     pivot.rotation.set(state.tiltX, state.rotationY + idleAngle, state.tiltZ);
+    // on wide screens the bottle steps aside for the text; on tall screens it stays centred
+    const halfWidth = Math.tan((camera.fov * Math.PI) / 360) * state.cameraZ * fit * aspect;
+    pivot.position.x = aspect > 1 ? state.shiftX * halfWidth : 0;
     bottle.setExplode(state.explode);
     key.color.setHex(state.keyLight);
     key.intensity = 2.2 * state.keyIntensity;
