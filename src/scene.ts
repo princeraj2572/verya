@@ -94,8 +94,11 @@ export function createScene(canvas: HTMLCanvasElement, profile: DeviceProfile): 
   const pose = (): void => {
     // pull the camera back on tall screens so the bottle always fits
     const fit = aspect < 1 ? 1 + (1 - aspect) * 0.85 : 1;
-    camera.position.set(0, state.cameraY, state.cameraZ * fit);
-    camera.lookAt(0, state.lookY, 0);
+    const dist = state.cameraZ * fit;
+    // on tall screens the bottle rides in the upper half, clear of the text below it
+    const lift = aspect <= 1 ? state.shiftY * Math.tan((camera.fov * Math.PI) / 360) * dist : 0;
+    camera.position.set(0, state.cameraY - lift, dist);
+    camera.lookAt(0, state.lookY - lift, 0);
     pivot.rotation.set(state.tiltX, state.rotationY + idleAngle, state.tiltZ);
     // on wide screens the bottle steps aside for the text; on tall screens it stays centred
     const halfWidth = Math.tan((camera.fov * Math.PI) / 360) * state.cameraZ * fit * aspect;
@@ -136,7 +139,7 @@ export function createScene(canvas: HTMLCanvasElement, profile: DeviceProfile): 
     // adaptive quality: after warm-up, drop to simple glass and 1x pixels if the device struggles
     frames++;
     if (frames > 30 && frames <= 150 && dt > 0.034) slowFrames++;
-    if (frames === 150 && slowFrames > 60) {
+    if (profile.adaptive && frames === 150 && slowFrames > 60) {
       pixelRatio = 1;
       renderer.setPixelRatio(1);
       resize();
