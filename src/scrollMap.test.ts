@@ -67,6 +67,14 @@ describe('shiftX', () => {
   });
 });
 
+describe('shiftY', () => {
+  it('lifts the bottle on portrait screens for text chapters, not for the hero', () => {
+    expect(mapProgress(chapterProgress(0)).shiftY).toBe(0);
+    expect(mapProgress(chapterProgress(4)).shiftY).toBeGreaterThan(0);
+    expect(mapProgress(chapterProgress(5)).shiftY).toBeLessThan(0);
+  });
+});
+
 describe('ink', () => {
   it('stays light on dark backgrounds and dark on cream, with only a brief mid-grey handover', () => {
     let weak = 0;

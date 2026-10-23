@@ -12,6 +12,8 @@ export interface SceneState {
   lookY: number;
   /** horizontal offset of the bottle as a fraction of half the screen width (clear of the text) */
   shiftX: number;
+  /** same idea vertically, used on tall (portrait) screens only; positive lifts the bottle */
+  shiftY: number;
   background: number;
   ink: number;
   keyLight: number;
@@ -45,6 +47,7 @@ const base: Key = {
   cameraY: 1.7,
   lookY: 1.65,
   shiftX: 0,
+  shiftY: 0,
   background: palette.charcoal,
   ink: palette.ink,
   keyLight: 0xffe2b0,
@@ -67,6 +70,7 @@ const keys: Key[] = [
     ...base,
     rotationY: 1.2,
     shiftX: 0.5,
+    shiftY: 0.5,
     cameraZ: 7.4,
     cameraY: 2.3,
     lookY: 2.2,
@@ -78,6 +82,7 @@ const keys: Key[] = [
     ...base,
     rotationY: 2.4,
     shiftX: -0.5,
+    shiftY: 0.5,
     tiltZ: 0.2,
     tiltX: 0.06,
     cameraZ: 10,
@@ -92,6 +97,7 @@ const keys: Key[] = [
     ...base,
     rotationY: 3.5,
     shiftX: 0.5,
+    shiftY: 0.5,
     tiltZ: -0.1,
     cameraZ: 10,
     background: palette.plum,
@@ -105,6 +111,7 @@ const keys: Key[] = [
     ...base,
     rotationY: 4.4,
     shiftX: -0.5,
+    shiftY: 0.5,
     cameraZ: 10.5,
     background: palette.deepAmber,
     keyLight: 0xff9a3c,
@@ -118,6 +125,7 @@ const keys: Key[] = [
   {
     ...base,
     rotationY: 5.2,
+    shiftY: -0.35,
     cameraZ: 15.5,
     cameraY: 2.2,
     lookY: 1.8,
@@ -130,6 +138,7 @@ const keys: Key[] = [
     ...base,
     rotationY: 5.9,
     shiftX: 0.5,
+    shiftY: 0.5,
     cameraZ: 10.5,
     background: 0x1c0f1b,
     keyLight: 0xffd9b0,
@@ -141,6 +150,7 @@ const keys: Key[] = [
     ...base,
     rotationY: Math.PI * 2,
     shiftX: -0.5,
+    shiftY: 0.5,
     cameraZ: 9.5,
     background: palette.cream,
     ink: palette.inkDark,
