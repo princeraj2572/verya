@@ -7,6 +7,8 @@ import { createParticles } from './particles';
 import { mapProgress, type SceneState } from './scrollMap';
 
 export interface LabelPoint {
+  /** pixels per world unit at this part, so labels can clear the glass */
+  r: number;
   x: number;
   y: number;
 }
@@ -33,7 +35,7 @@ function buildEnvironment(): THREE.Scene {
     mesh.lookAt(0, 1.6, 0);
     env.add(mesh);
   };
-  panel(4, 7, 9, -5, 4, 3); // broad soft-box, camera left
+  panel(4, 7, 6, -5, 4, 3); // broad soft-box, camera left
   panel(1.2, 8, 14, 6, 3, -3); // thin strip behind right for a crisp rim reflection
   return env;
 }
@@ -163,6 +165,7 @@ export function createScene(canvas: HTMLCanvasElement, profile: DeviceProfile): 
   sync();
 
   const v = new THREE.Vector3();
+  const unitX = new THREE.Vector3(1, 0, 0);
   return {
     apply(next) {
       state = next;
@@ -175,8 +178,11 @@ export function createScene(canvas: HTMLCanvasElement, profile: DeviceProfile): 
       const w = canvas.clientWidth;
       const h = canvas.clientHeight;
       for (const id of PART_IDS) {
-        bottle.labelPoint(id, v).project(camera);
-        out[id] = { x: ((v.x + 1) / 2) * w, y: ((1 - v.y) / 2) * h };
+        bottle.labelPoint(id, v);
+        const edge = v.clone().add(unitX).project(camera);
+        v.project(camera);
+        const x = ((v.x + 1) / 2) * w;
+        out[id] = { x, y: ((1 - v.y) / 2) * h, r: Math.abs(((edge.x + 1) / 2) * w - x) };
       }
       return out;
     },
