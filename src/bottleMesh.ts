@@ -70,9 +70,9 @@ export function createBottle(quality: GlassQuality, segments = 96): Bottle {
   // Cheaper stand-in for slow devices: no transmission pass, just a reflective tinted shell.
   const glassSimple = track(
     new THREE.MeshPhysicalMaterial({
-      color: 0xfff1de,
+      color: 0xffe3c0,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.34,
       roughness: 0.06,
       clearcoat: 1,
       clearcoatRoughness: 0.04,
